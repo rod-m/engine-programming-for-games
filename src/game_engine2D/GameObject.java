@@ -1,17 +1,22 @@
 package game_engine2D;
-import processing.core.*;
-import processing.data.JSONObject;
+import java.util.ArrayList;
 
-public abstract class GameObject{
-	  public String name;
-	    public PApplet parent; // The parent PApplet that we will render ourselves onto
-	    
-	   
-	    public GameObject(){}
-	    public GameObject(PApplet p){
-	        parent = p;
-	    }
-	 
-	    public abstract void update();
-	    public abstract void render();
+import processing.core.*;
+
+public abstract class GameObject extends ProcessingEntity {
+	public GameObject(PApplet p) {
+		super(p);
+		this.components = new ArrayList<GameComponent>();
+	}
+
+	public String name;
+	public String tag;
+	public ArrayList<GameComponent> components;
+	public Transform transform = new Transform();
+	public abstract void start();
+	public abstract void update();
+	public abstract void render();
+	public String ToString() {
+		return this.name;
+	}
 }

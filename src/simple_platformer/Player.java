@@ -12,13 +12,13 @@ import processing.core.PVector;
  *
  */
 public class Player extends Sprite {
-	float speed = 3f;
-	float gravity = 0.1f;
-	public PVector size = new PVector(12,12);
+	float speedForce = 3f;
+	float jumpForce = 2f;
+	public PVector size = new PVector(12, 12);
 	private Physics2D physics;
-	public int stroke = parent.color(120,120,255);
+	public int stroke = parent.color(120, 120, 255);
 	public int fill = parent.color(255);
-	
+
 	/**
 	 * @param p
 	 */
@@ -26,40 +26,54 @@ public class Player extends Sprite {
 		super(p);
 		// TODO Auto-generated constructor stub
 	}
-	 public Player(PApplet p, float x, float y, float w, float h) {
-	        super(p);
-	        speed = 3.0f;
-	    }
-	 public void start() {
-		 this.transform.position.x = parent.width / 2;
-		 this.transform.position.y = parent.height / 2;
-		 this.transform.boundingBox.fromSize(size);
-		 this.physics = new Physics2D(this);
-		 this.physics.start();
-	 }
-	 public void checkCollisions(BoundingBox bb) {
-		 this.physics.checkCollisions(bb);
-	 }
-	/* (non-Javadoc)
-	 * @see game_engine2D.Sprite#update()
-	 */
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
+
+	public Player(PApplet p, float x, float y, float w, float h) {
+		super(p);
 
 	}
+
+	public void start() {
+		this.transform.position.x = parent.width / 2;
+		this.transform.position.y = parent.height / 2;
+		this.transform.boundingBox.fromSize(size);
+		this.physics = new Physics2D(this);
+		this.physics.start();
+		this.physics.speed = speedForce;
+	}
+
+//	public void checkCollisions(BoundingBox bb) {
+//		this.physics.checkCollisions(bb);
+//	}
+
 	@Override
-	public void render(){
-		super.render();
+	public void update() {
+		super.update();
+	}
+
+	@Override
+	public void render() {
+
 		parent.fill(this.fill);
 		parent.stroke(this.stroke);
 		parent.rect(this.transform.position.x, this.transform.position.y, this.size.x, this.size.y);
 
 	}
-	 public void keyPressed(char key, int keyCode) {
-	    	//mapped key pressed
-		 if(key == 'w') {
-			 this.physics.jump(4);
-		 }
-	    }
+
+	public void keyPressed(char key, int keyCode) {
+		// mapped key pressed
+		   if (keyCode == PApplet.UP) {
+			this.physics.jump(4);
+		}
+		   if (keyCode == PApplet.LEFT) {
+			this.physics.move(-speedForce);
+		}
+		   if (keyCode == PApplet.RIGHT) {
+			this.physics.move(speedForce);
+		}
+	}
+
+	public void keyReleased(char key, int keyCode) {
+		this.physics.keyUp();
+	}
+
 }

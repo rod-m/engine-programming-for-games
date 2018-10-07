@@ -1,6 +1,6 @@
 package game_engine2D;
 
-import processing.core.*;
+import processing.core.PApplet;
 
 public abstract class Sprite extends GameObject {
 	public Sprite(PApplet p) {
@@ -16,19 +16,12 @@ public abstract class Sprite extends GameObject {
 
 	@Override
 	public void render() {
-		for (int i = this.components.size() - 1; i >= 0; i--) {
-			GameComponent comp = this.components.get(i);
-			comp.update();
-			comp.render();
-		}
+		//render components
 	}
 
 	@Override
 	public void start() {
 		//start all components
-		for (int i = this.components.size() - 1; i >= 0; i--) {
-			GameComponent comp = this.components.get(i);
-			comp.start();
-		}
+		
 	}
 }

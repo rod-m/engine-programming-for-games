@@ -3,6 +3,7 @@ package game_engine2D;
 import processing.core.*;
 
 public abstract class Sprite extends GameObject {
+	public PVector size = new PVector(12,12);
 	public Sprite(PApplet p) {
 		super(p);
 	}
@@ -31,4 +32,8 @@ public abstract class Sprite extends GameObject {
 			comp.start();
 		}
 	}
+    public void keyPressed(char key, int keyCode) {
+    	//mapped key pressed
+    }
+
 }

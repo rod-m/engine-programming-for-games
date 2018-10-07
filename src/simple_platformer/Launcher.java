@@ -16,12 +16,13 @@ public class Launcher extends BaseLauncher{
         Player player = new Player(parent, parent.width/2,parent.height/2,60, 60);
         player.start();
         this.gameManager.addObject(player);
-   
+        this.gameManager.addPlayerGameObjects(player);
         int platforms = 8;
         for(int i = 0; i < platforms; i++){
             Tile platform = new Tile(parent, 50 + i * 55, parent.height-50,50, 20);
             platform.start();
             this.gameManager.addObject(platform);
+            this.gameManager.addGameBoundingBoxes(platform);
         }
     }
 	  public void UpdateAll(){

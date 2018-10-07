@@ -10,15 +10,14 @@ import processing.core.PApplet;
  *
  */
 public class Tile extends Sprite {
-	public int width;
-	public int height;
+
 	int strokeColour;
 	int fillColour;
 	
 	public Tile(PApplet p, int x, int y, int w, int h) {
 		super(p, x, y);
-		this.width = w;
-		this.height = h;
+		this.size.x = w;
+		this.size.y = h;
 		this.strokeColour = parent.color(255, 255, 255);
 		this.fillColour = parent.color(0, 0, 0);
 	}
@@ -27,6 +26,7 @@ public class Tile extends Sprite {
 	public void start() {
 		super.start();
 		
+		this.transform.boundingBox.fromSize(size);
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public class Tile extends Sprite {
 		parent.translate(this.transform.position.x, this.transform.position.y);
 		parent.stroke(this.strokeColour);
 		parent.fill(this.fillColour);
-		parent.rect(0, 0, this.width, this.height);
+		parent.rect(0, 0, this.size.x, this.size.y);
 		parent.popMatrix();
 	}
 }

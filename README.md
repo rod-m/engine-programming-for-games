@@ -28,3 +28,6 @@ Configured the game manager to track player object collisions with platforms.
 Added some functionality to the Transform class to return a bounding box of current object world coordinates.
 Passing key press events to player object. Using key 'w' as a jump action.
 
+# Sprint 4
+Added Arrow movements ~ there is an osx issue with keypress, the arrow keys are ok. The new osx will use unicode special characters after multiple key presses.
+Made collision system, gravity, friction.

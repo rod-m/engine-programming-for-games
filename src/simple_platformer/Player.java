@@ -3,7 +3,7 @@
  */
 package simple_platformer;
 
-import game_engine2D.Sprite;
+import game_engine2D.*;
 import processing.core.PApplet;
 import processing.core.PVector;
 
@@ -14,7 +14,8 @@ import processing.core.PVector;
 public class Player extends Sprite {
 	float speed = 3f;
 	float gravity = 0.1f;
-	private PVector size = new PVector(12,12);
+	public PVector size = new PVector(12,12);
+	private Physics2D physics;
 	public int stroke = parent.color(120,120,255);
 	public int fill = parent.color(255);
 	/**
@@ -22,7 +23,6 @@ public class Player extends Sprite {
 	 */
 	public Player(PApplet p) {
 		super(p);
-		// TODO Auto-generated constructor stub
 	}
 	 public Player(PApplet p, float x, float y, float w, float h) {
 	        super(p);
@@ -31,10 +31,11 @@ public class Player extends Sprite {
 	 public void start() {
 		 this.transform.position.x = parent.width / 2;
 		 this.transform.position.y = parent.height / 2;
+		 this.physics = new Physics2D(this);
+		 this.physics.start();
 	 }
-	/* (non-Javadoc)
-	 * @see game_engine2D.Sprite#update()
-	 */
+
+
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
@@ -42,6 +43,7 @@ public class Player extends Sprite {
 	}
 	@Override
 	public void render(){
+		super.render();
 		parent.fill(this.fill);
 		parent.stroke(this.stroke);
 		parent.rect(this.transform.position.x, this.transform.position.y, this.size.x, this.size.y);

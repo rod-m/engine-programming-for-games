@@ -5,12 +5,16 @@ import java.util.ArrayList;
 public class GameManager {
     public PApplet parent; // The parent PApplet that we will render ourselves onto
     public int background = 0;
+    private ArrayList<GameObject> gameObjects;
+   
+   
+
     public GameManager(PApplet p){
         parent = p;
         gameObjects = new ArrayList<GameObject>();
+     
+       
     }
-
-    private ArrayList<GameObject> gameObjects;
 
 
     public void addObject(GameObject g){

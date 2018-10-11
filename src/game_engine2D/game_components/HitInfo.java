@@ -1,4 +1,6 @@
-package game_engine2D;
+package game_engine2D.game_components;
+
+import game_engine2D.SIDES;
 
 public class HitInfo {
 	/*

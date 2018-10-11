@@ -1,7 +1,10 @@
 package game_engine2D;
+import processing.core.PApplet;
+import processing.core.PVector;
 
-import processing.core.*;
 import java.util.ArrayList;
+
+import game_engine2D.game_components.BoundingBox;
 
 /* Example of basic Launch processing applet*/
 public class GameManager extends ProcessingEntity{
@@ -10,13 +13,18 @@ public class GameManager extends ProcessingEntity{
 	private ArrayList<GameObject> gameObjects; // scene static elements like platforms
 	private ArrayList<GameObject> playerGameObjects; // player list for attaching interactions like key press
 	public static ArrayList<BoundingBox> gameBoundingBoxes;
-
+	public static int frameCount = 0;
+	public static PVector offset = new PVector(0,0);
+	public static PVector screenOffset = new PVector(0,0);
 	public GameManager(PApplet p) {
 		super(p);
 		this.name = "GameManager";
 		gameObjects = new ArrayList<GameObject>();
 		playerGameObjects = new ArrayList<GameObject>();
 		gameBoundingBoxes = new ArrayList<BoundingBox>();
+		screenOffset.x = parent.width / 2;
+		screenOffset.y = parent.height / 2;
+
 	}
 
 	public void addGameBoundingBoxes(GameObject b) {
@@ -45,7 +53,8 @@ public class GameManager extends ProcessingEntity{
 	}
 	
 	public void UpdateAll() {
-		
+		parent.pushMatrix();
+		parent.translate(offset.x, offset.y);
 		parent.background(background);
 		for (int i = 0; i < gameObjects.size(); i++) {
 
@@ -54,6 +63,8 @@ public class GameManager extends ProcessingEntity{
 			g.render();
 		}
 		//checkCollisions();
+		frameCount ++; // completed all frame update and renderings
+		parent.popMatrix();
 	}
 
 	public void keyPressed(char key, int keyCode) {

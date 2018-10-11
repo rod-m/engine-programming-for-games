@@ -4,6 +4,7 @@
 package simple_platformer;
 
 import game_engine2D.*;
+import game_engine2D.game_components.Physics2D;
 import processing.core.PApplet;
 import processing.core.PVector;
 
@@ -13,7 +14,7 @@ import processing.core.PVector;
  */
 public class Player extends Sprite {
 	float speedForce = 3f;
-	float jumpForce = 2f;
+	float jumpForce = 10f;
 	public PVector size = new PVector(12, 12);
 	private Physics2D physics;
 	public int stroke = parent.color(120, 120, 255);
@@ -35,7 +36,7 @@ public class Player extends Sprite {
 	public void start() {
 		this.transform.position.x = parent.width / 2;
 		this.transform.position.y = parent.height / 2;
-		this.transform.boundingBox.fromSize(size);
+		this.transform.localBoundingBox.fromSize(size);
 		this.physics = new Physics2D(this);
 		this.physics.start();
 		this.physics.speed = speedForce;
@@ -62,7 +63,7 @@ public class Player extends Sprite {
 	public void keyPressed(char key, int keyCode) {
 		// mapped key pressed
 		   if (keyCode == PApplet.UP) {
-			this.physics.jump(4);
+			this.physics.jump(jumpForce);
 		}
 		   if (keyCode == PApplet.LEFT) {
 			this.physics.move(-speedForce);

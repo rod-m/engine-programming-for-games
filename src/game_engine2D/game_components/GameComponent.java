@@ -1,4 +1,9 @@
-package game_engine2D;
+package game_engine2D.game_components;
+
+import game_engine2D.GameObject;
+import game_engine2D.ProcessingEntity;
+import game_engine2D.Transform;
+
 /**
  * @author Rod Martin r.martin1@salford.ac.uk
  *

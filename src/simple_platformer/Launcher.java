@@ -15,17 +15,15 @@ public class Launcher extends BaseLauncher{
 		super.StartGame();
         Player player = new Player(parent, parent.width/2,parent.height/2,60, 60);
         player.start();
+        
         this.gameManager.addObject(player);
         this.gameManager.addPlayerGameObjects(player);
+        Camera2D camera = new Camera2D(parent,player, 99);
+        camera.cameraOffset.y = 90;
+        this.gameManager.addObject(camera);
         int platforms = 8;
         Tile platform;
-        for(int i = 0; i < platforms; i++){
-            platform = new Tile(parent, 75 + i * 50, parent.height-50,50, 20);
-            platform.start();
-            this.gameManager.addObject(platform);
-            this.gameManager.addGameBoundingBoxes(platform);
-        }
-        
+     
         for(int i = 0; i < platforms; i++){
             platform = new Tile(parent, parent.random(parent.width),parent.random(parent.height),50, 20);
             platform.start();
@@ -64,14 +62,14 @@ public class Launcher extends BaseLauncher{
         this.gameManager.addObject(platform);
         this.gameManager.addGameBoundingBoxes(platform);
         //left
-        platform = new Tile(parent, 0, parent.height/2, 20, parent.height);
+        platform = new Tile(parent, 0, parent.height/2, 20, parent.height * 10);
         platform.start();
         platform.strokeColour = parent.color(0,200,20);
         platform.fillColour = parent.color(0,200,20);
         this.gameManager.addObject(platform);
         this.gameManager.addGameBoundingBoxes(platform);
         //right
-        platform = new Tile(parent, parent.width, parent.height/2, 20, parent.height);
+        platform = new Tile(parent, parent.width, parent.height/2, 20, parent.height*10);
         platform.start();
         platform.strokeColour = parent.color(0,200,20);
         platform.fillColour = parent.color(0,200,20);

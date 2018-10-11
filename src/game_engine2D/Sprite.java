@@ -1,9 +1,11 @@
 package game_engine2D;
 
+import game_engine2D.game_components.GameComponent;
 import processing.core.PApplet;
 import processing.core.PVector;
 
 public abstract class Sprite extends GameObject {
+	
 	public PVector size = new PVector(12,12);
 	public Sprite(PApplet p) {
 		super(p);
@@ -18,6 +20,7 @@ public abstract class Sprite extends GameObject {
 
 	@Override
 	public void update() {
+	
 		for (int i = this.components.size() - 1; i >= 0; i--) {
 			GameComponent comp = this.components.get(i);
 			comp.update();

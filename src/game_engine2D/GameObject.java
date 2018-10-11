@@ -1,6 +1,7 @@
 package game_engine2D;
 import java.util.ArrayList;
 
+import game_engine2D.game_components.GameComponent;
 import processing.core.*;
 
 public abstract class GameObject extends ProcessingEntity {

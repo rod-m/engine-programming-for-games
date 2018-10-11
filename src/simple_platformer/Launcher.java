@@ -21,17 +21,19 @@ public class Launcher extends BaseLauncher{
         Camera2D camera = new Camera2D(parent,player, 99);
         camera.cameraOffset.y = 90;
         this.gameManager.addObject(camera);
-        int platforms = 8;
+        int platforms = 50;
         Tile platform;
      
         for(int i = 0; i < platforms; i++){
-            platform = new Tile(parent, parent.random(parent.width),parent.random(parent.height),50, 20);
+        	float x = parent.random(0, parent.width);
+        	float y = parent.random(-parent.height * 2f, parent.height*0.9f);
+            platform = new Tile(parent, x,y,50, 20);
             platform.start();
             this.gameManager.addObject(platform);
             this.gameManager.addGameBoundingBoxes(platform);
         }
         
-        
+        platforms = 5;
         for(int i = 0; i < platforms; i++){
             platform = new Tile(parent, 26+ i * 50,40 + 15 * i,50, 20);
             platform.start();

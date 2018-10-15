@@ -68,6 +68,7 @@ public class GameManager extends ProcessingEntity{
 		//checkCollisions();
 		frameCount ++; // completed all frame update and renderings
 		parent.popMatrix();
+		
 	}
 
 	public void keyPressed(char key, int keyCode) {

@@ -79,7 +79,7 @@ public class Launcher extends BaseLauncher{
         }
         //right
         for(int i = 0; i < 200; i++){
-        	platform = new Tile(parent, parent.width,(-parent.height *3)+th*i,tw, th);
+        	platform = new Tile(parent, parent.width*2,(-parent.height *3)+th*i,tw, th);
             platform.start();
             platform.strokeColour = parent.color(0,200,200);
             platform.fillColour = parent.color(0,200,200);

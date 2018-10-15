@@ -57,7 +57,8 @@ public class Player extends Sprite {
 		parent.fill(this.fill);
 		parent.stroke(this.stroke);
 		parent.rect(this.transform.position.x, this.transform.position.y, this.size.x, this.size.y);
-
+		parent.textSize(12);
+		parent.text("#"+this.physics.collisionCount, this.transform.position.x-4, this.transform.position.y-15); 
 	}
 
 	public void keyPressed(char key, int keyCode) {

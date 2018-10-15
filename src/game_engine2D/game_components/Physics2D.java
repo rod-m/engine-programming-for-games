@@ -26,6 +26,7 @@ public class Physics2D extends GameComponent {
 	boolean isGrounded = true;
 	public float speed = 3f;
 	public float maxSpeed = 5f;
+	public int collisionCount = 0;
 
 	/**
 	 * @param g
@@ -79,7 +80,8 @@ public class Physics2D extends GameComponent {
 		BoundingBox new_bb;
 		new_bb = this.transform.NewWorldBoundingBox();
 		ArrayList<BoundingBox> mySpatialLoc = GameManager.basicSpatialGrid.queryGrid(new_bb);
-		for (int i = 0; i < mySpatialLoc.size(); i++) {
+		collisionCount = mySpatialLoc.size();
+		for (int i = 0; i < collisionCount; i++) {
 
 			HitInfo hitInfo = new HitInfo();
 			hitInfo.boundingBox = mySpatialLoc.get(i);

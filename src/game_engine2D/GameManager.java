@@ -4,6 +4,7 @@ import processing.core.PVector;
 
 import java.util.ArrayList;
 
+import game_engine2D.game_components.BasicSpatialGrid;
 import game_engine2D.game_components.BoundingBox;
 
 /* Example of basic Launch processing applet*/
@@ -16,6 +17,7 @@ public class GameManager extends ProcessingEntity{
 	public static int frameCount = 0;
 	public static PVector offset = new PVector(0,0);
 	public static PVector screenOffset = new PVector(0,0);
+	public static BasicSpatialGrid basicSpatialGrid;
 	public GameManager(PApplet p) {
 		super(p);
 		this.name = "GameManager";
@@ -26,7 +28,7 @@ public class GameManager extends ProcessingEntity{
 		screenOffset.y = parent.height / 2;
 
 	}
-
+	
 	public void addGameBoundingBoxes(GameObject b) {
 		gameBoundingBoxes.add(b.transform.NewWorldBoundingBox());
 	}
@@ -50,6 +52,7 @@ public class GameManager extends ProcessingEntity{
 			g.start();
 
 		}
+		basicSpatialGrid = new BasicSpatialGrid(parent.height,2);
 	}
 	
 	public void UpdateAll() {

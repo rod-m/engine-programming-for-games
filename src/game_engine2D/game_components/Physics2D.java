@@ -3,6 +3,8 @@
  */
 package game_engine2D.game_components;
 
+import java.util.ArrayList;
+
 import game_engine2D.GameManager;
 import game_engine2D.GameObject;
 import processing.core.PApplet;
@@ -74,10 +76,13 @@ public class Physics2D extends GameComponent {
 				return;
 			}
 		}
-		for (int i = 0; i < GameManager.gameBoundingBoxes.size(); i++) {
+		BoundingBox new_bb;
+		new_bb = this.transform.NewWorldBoundingBox();
+		ArrayList<BoundingBox> mySpatialLoc = GameManager.basicSpatialGrid.queryGrid(new_bb);
+		for (int i = 0; i < mySpatialLoc.size(); i++) {
 
 			HitInfo hitInfo = new HitInfo();
-			hitInfo.boundingBox = GameManager.gameBoundingBoxes.get(i);
+			hitInfo.boundingBox = mySpatialLoc.get(i);
 			hitInfo = this.boxCollider2D.checkCollision(hitInfo);
 			if (hitInfo.didHit) {
 				// this.velocity = hitInfo.velocity;

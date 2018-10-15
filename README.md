@@ -31,3 +31,9 @@ Passing key press events to player object. Using key 'w' as a jump action.
 # Sprint 4
 Added Arrow movements ~ there is an osx issue with keypress, the arrow keys are ok. The new osx will use unicode special characters after multiple key presses.
 Made collision system, gravity, friction.
+
+# Sprint 5
+Added offset grid with a Camera2D
+
+# Sprint 6
+Spatial Grid colission system. Player has text displaying number of tiles tested.

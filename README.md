@@ -36,4 +36,4 @@ Made collision system, gravity, friction.
 Added offset grid with a Camera2D
 
 # Sprint 6
-Spatial Grid colission system. Player has text displaying number of tiles tested.
+Spatial Grid collision system. Player has text displaying number of tiles tested.

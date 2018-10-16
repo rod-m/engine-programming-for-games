@@ -5,6 +5,9 @@ Java based with processing 3 as the core library.
 Setup a java IDE like Eclipse to extend the processing.org papplet.
 see tutorial here https://processing.org/tutorials/eclipse/
 
+# Eclipse and GIT
+Due to a bug with importing a git repo as a Java Project, you should first import from git and create an new general project. Checkout one of the branches sprint-001 which has .java files in. Then you can use the option in Eclipse - 'Open Projects from file system'. This will force Eclipse to recognise the project as a java project. An odd workaround but will work.
+
 Each branch forms a new sprint checkpoint.
 # Master branch
 Skeleton GameObject setup.

@@ -6,7 +6,7 @@ Setup a java IDE like Eclipse to extend the processing.org papplet.
 see tutorial here https://processing.org/tutorials/eclipse/
 
 # Eclipse and GIT
-Due to a bug with importing a git repo as a Java Project, you should first import from git and create an new general project. Checkout one of the branches sprint-001 which has .java files in. Then you can use the option in Eclipse - 'Open Projects from file system'. This will force Eclipse to recognise the project as a java project. An odd workaround but will work.
+Due to a bug with importing a git repo as a Java Project, you should first import from git and create an new general project. If the project was added to your work directory you can remove the project without deleting the files. Then you can use the option in Eclipse - 'Open Projects from file system', select the git repo content folder. This will force Eclipse to recognise the project as a java project. An odd workaround but will work. 
 
 Each branch forms a new sprint checkpoint.
 # Master branch

@@ -5,6 +5,9 @@ Java based with processing 3 as the core library.
 Setup a java IDE like Eclipse to extend the processing.org papplet.
 see tutorial here https://processing.org/tutorials/eclipse/
 
+# Eclipse and GIT
+Due to a bug with importing a git repo as a Java Project, you should first import from git and create an new general project. If the project was added to your work directory you can remove the project without deleting the files. Then you can use the option in Eclipse - 'Open Projects from file system', select the git repo content folder. This will force Eclipse to recognise the project as a java project. An odd workaround but will work. 
+
 Each branch forms a new sprint checkpoint.
 # Master branch
 Skeleton GameObject setup.
@@ -31,3 +34,10 @@ Passing key press events to player object. Using key 'w' as a jump action.
 # Sprint 4
 Added Arrow movements ~ there is an osx issue with keypress, the arrow keys are ok. The new osx will use unicode special characters after multiple key presses.
 Made collision system, gravity, friction.
+
+# Sprint 5
+Added offset grid with a Camera2D
+
+# Sprint 6
+Spatial Grid collision system. Player has text displaying number of tiles tested.
+Fixed sticking to walls - checked left/right bounding box before top/bottom. Added a 2 pixel bounce off sides.

@@ -41,3 +41,5 @@ Added offset grid with a Camera2D
 # Sprint 6
 Spatial Grid collision system. Player has text displaying number of tiles tested.
 Fixed sticking to walls - checked left/right bounding box before top/bottom. Added a 2 pixel bounce off sides.
+Placed platforms on grid. Added reload option for test.
+

@@ -59,9 +59,11 @@ public class Player extends Sprite {
 		parent.rect(this.transform.position.x, this.transform.position.y, this.size.x, this.size.y);
 		parent.textSize(12);
 		parent.text("#"+this.physics.collisionCount, this.transform.position.x-4, this.transform.position.y-15); 
+	
 	}
 
 	public void keyPressed(char key, int keyCode) {
+		super.keyPressed(key, keyCode);
 		// mapped key pressed
 		   if (keyCode == PApplet.UP) {
 			this.physics.jump(jumpForce);
@@ -75,6 +77,7 @@ public class Player extends Sprite {
 	}
 
 	public void keyReleased(char key, int keyCode) {
+		super.keyReleased(key, keyCode);
 		this.physics.keyUp();
 	}
 

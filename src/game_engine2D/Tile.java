@@ -19,7 +19,7 @@ public class Tile extends Sprite {
 		this.size.x = w;
 		this.size.y = h;
 		this.strokeColour = parent.color(255, 255, 255);
-		this.fillColour = parent.color(0, 0, 0);
+		this.fillColour = parent.color(33,10,155);
 	}
 
 	@Override

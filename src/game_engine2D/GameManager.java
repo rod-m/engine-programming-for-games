@@ -21,14 +21,16 @@ public class GameManager extends ProcessingEntity{
 	public GameManager(PApplet p) {
 		super(p);
 		this.name = "GameManager";
+		
+		screenOffset.x = parent.width / 2;
+		screenOffset.y = parent.height / 2;
+		this.Init();
+	}
+	public void Init() {
 		gameObjects = new ArrayList<GameObject>();
 		playerGameObjects = new ArrayList<GameObject>();
 		gameBoundingBoxes = new ArrayList<BoundingBox>();
-		screenOffset.x = parent.width / 2;
-		screenOffset.y = parent.height / 2;
-
 	}
-	
 	public void addGameBoundingBoxes(GameObject b) {
 		gameBoundingBoxes.add(b.transform.NewWorldBoundingBox());
 	}
@@ -72,6 +74,7 @@ public class GameManager extends ProcessingEntity{
 	}
 
 	public void keyPressed(char key, int keyCode) {
+		
 		for (int i = 0; i < playerGameObjects.size(); i++) {
 			// send key press to player
 			GameObject g = playerGameObjects.get(i);

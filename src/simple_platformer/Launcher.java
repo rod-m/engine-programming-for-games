@@ -1,105 +1,112 @@
 package simple_platformer;
 
-
 import game_engine2D.*;
 import processing.core.PApplet;
 
-
-public class Launcher extends BaseLauncher{
+public class Launcher extends BaseLauncher {
 	public boolean started = false;
 	int waiting = 0;
+
 	public Launcher(PApplet p) {
 		super(p);
 	}
 
-	public void StartGame(){
-		if(this.started) return;
+	public void keyPressed(char key, int keyCode) {
+		super.keyPressed(key, keyCode);
+		if (key == 'b' || key == 'B') {
+			this.ReLoad();
+		}
+	}
+
+	public void keyReleased(char key, int keyCode) {
+		super.keyReleased(key, keyCode);
+
+	}
+
+	public void ReLoad() {
+		this.gameManager.Init();
+		TestRestart();
+
+	}
+
+	public void StartGame() {
+		if (this.started)
+			return;
 		super.StartGame();
-		parent.background(100);
-		parent.text("Initialising!", parent.width/2, parent.height/2);
-		if(waiting < 90) {
+
+		if (waiting < 90) {
+			parent.background(100);
+			parent.text("Initialising!", parent.width / 2, parent.height / 2);
 			waiting++;
 			return;
 		}
-        Player player = new Player(parent, parent.width/2,parent.height/2,60, 60);
-        player.start();
-        
-        this.gameManager.addObject(player);
-        this.gameManager.addPlayerGameObjects(player);
-        Camera2D camera = new Camera2D(parent,player, 99);
-        camera.cameraOffset.y = 90;
-        this.gameManager.addObject(camera);
-        int platforms = 50;
-        Tile platform;
-        int tw = 50;
-        int th = 20;
-        for(int i = 0; i < platforms; i++){
-        	float x = parent.random(0, parent.width);
-        	float y = parent.random(-parent.height * 2f, parent.height*0.9f);
-            platform = new Tile(parent, x,y,tw, th);
-            platform.start();
-            this.gameManager.addObject(platform);
-            this.gameManager.addGameBoundingBoxes(platform);
-        }
-        
-        platforms = 5;
-        for(int i = 0; i < platforms; i++){
-            platform = new Tile(parent, 26+ i * tw,40 + 15 * i,tw, th);
-            platform.start();
-            this.gameManager.addObject(platform);
-            this.gameManager.addGameBoundingBoxes(platform);
-        }
-        
-        platform = new Tile(parent, parent.width/2, parent.height-100,tw, th);
-        platform.start();
-        this.gameManager.addObject(platform);
-        this.gameManager.addGameBoundingBoxes(platform);
-        
-        platform = new Tile(parent, (parent.width*0.75f),(parent.height*0.65f),tw, th);
-        platform.start();
-        this.gameManager.addObject(platform);
-        this.gameManager.addGameBoundingBoxes(platform);
-        
-        platform = new Tile(parent, (parent.width*0.65f),(parent.height*0.45f),tw, th);
-        platform.start();
-        this.gameManager.addObject(platform);
-        this.gameManager.addGameBoundingBoxes(platform);
-        
-        //GROUND
-        
-        for(int i = 0; i < 40; i++){
-        	platform = new Tile(parent, i*tw, parent.height+10,tw, th);
-            platform.start();
-            platform.strokeColour = parent.color(0,200,200);
-            platform.fillColour = parent.color(0,200,200);
-            this.gameManager.addObject(platform);
-            this.gameManager.addGameBoundingBoxes(platform);
-        }
-        
-        //left
-        for(int i = 0; i < 200; i++){
-        	platform = new Tile(parent, 0,(-parent.height *3)+(th+2)*i,tw, th);
-            platform.start();
-            platform.strokeColour = parent.color(0,200,200);
-            platform.fillColour = parent.color(0,200,200);
-            this.gameManager.addObject(platform);
-            this.gameManager.addGameBoundingBoxes(platform);
-        }
-        //right
-        for(int i = 0; i < 200; i++){
-        	platform = new Tile(parent, parent.width*2,(-parent.height *3)+th*i,tw, th);
-            platform.start();
-            platform.strokeColour = parent.color(0,200,200);
-            platform.fillColour = parent.color(0,200,200);
-            this.gameManager.addObject(platform);
-            this.gameManager.addGameBoundingBoxes(platform);
-        }
-        
-        this.gameManager.StartAll();
-        this.started = true;
-    }
-	  public void UpdateAll(){
-	        super.UpdateAll();
-	    }
+
+		TestRestart();
+	}
+
+	public void TestRestart() {
+		Player player = new Player(parent, parent.width / 2, parent.height / 2, 60, 60);
+		player.start();
+		this.gameManager.addObject(player);
+		this.gameManager.addPlayerGameObjects(player);
+		Camera2D camera = new Camera2D(parent, player, 99);
+		camera.cameraOffset.y = 90;
+		this.gameManager.addObject(camera);
+		int platforms = 500;
+		Tile platform;
+		int tw = 50;
+		int th = 20;
+		int numPlatformsX = 2 * parent.width / tw;
+		int numPlatformsY = 2 * parent.height / th;
+		for (int i = 0; i < platforms; i++) {
+			int x = (int) parent.random(0, numPlatformsX) * tw;
+			int y = (int) parent.random(-numPlatformsY, numPlatformsY) * th;
+			platform = new Tile(parent, x, y, tw, th);
+			platform.start();
+			this.gameManager.addObject(platform);
+			this.gameManager.addGameBoundingBoxes(platform);
+		}
+
+		// GROUND
+
+		for (int i = 0; i < 40; i++) {
+			platform = new Tile(parent, i * tw, parent.height * 2, tw, th);
+			platform.start();
+			platform.strokeColour = parent.color(0, 200, 200);
+			platform.fillColour = parent.color(0, 200, 200);
+			this.gameManager.addObject(platform);
+			this.gameManager.addGameBoundingBoxes(platform);
+		}
+
+		// left
+		for (int i = 0; i < 200; i++) {
+			platform = new Tile(parent, 0, (-parent.height * 3) + (th + 2) * i, tw, th);
+			platform.start();
+			platform.strokeColour = parent.color(0, 200, 200);
+			platform.fillColour = parent.color(0, 200, 200);
+			this.gameManager.addObject(platform);
+			this.gameManager.addGameBoundingBoxes(platform);
+		}
+		// right
+		for (int i = 0; i < 200; i++) {
+			platform = new Tile(parent, parent.width * 2, (-parent.height * 3) + th * i, tw, th);
+			platform.start();
+			platform.strokeColour = parent.color(0, 200, 200);
+			platform.fillColour = parent.color(0, 200, 200);
+			this.gameManager.addObject(platform);
+			this.gameManager.addGameBoundingBoxes(platform);
+		}
+
+		this.gameManager.StartAll();
+		this.started = true;
+	}
+
+	public void UpdateAll() {
+		super.UpdateAll();
+		parent.fill(255);
+		parent.textSize(18);
+		parent.text("Hit 'B' to reload", 5, 20);
+
+	}
 
 }

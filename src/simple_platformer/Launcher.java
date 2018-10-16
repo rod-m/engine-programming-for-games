@@ -6,13 +6,21 @@ import processing.core.PApplet;
 
 
 public class Launcher extends BaseLauncher{
-
+	public boolean started = false;
+	int waiting = 0;
 	public Launcher(PApplet p) {
 		super(p);
 	}
 
 	public void StartGame(){
+		if(this.started) return;
 		super.StartGame();
+		parent.background(100);
+		parent.text("Initialising!", parent.width/2, parent.height/2);
+		if(waiting < 90) {
+			waiting++;
+			return;
+		}
         Player player = new Player(parent, parent.width/2,parent.height/2,60, 60);
         player.start();
         
@@ -59,7 +67,7 @@ public class Launcher extends BaseLauncher{
         
         //GROUND
         
-        for(int i = 0; i < 20; i++){
+        for(int i = 0; i < 40; i++){
         	platform = new Tile(parent, i*tw, parent.height+10,tw, th);
             platform.start();
             platform.strokeColour = parent.color(0,200,200);
@@ -70,7 +78,7 @@ public class Launcher extends BaseLauncher{
         
         //left
         for(int i = 0; i < 200; i++){
-        	platform = new Tile(parent, 0,(-parent.height *3)+th*i,tw, th);
+        	platform = new Tile(parent, 0,(-parent.height *3)+(th+2)*i,tw, th);
             platform.start();
             platform.strokeColour = parent.color(0,200,200);
             platform.fillColour = parent.color(0,200,200);
@@ -88,6 +96,7 @@ public class Launcher extends BaseLauncher{
         }
         
         this.gameManager.StartAll();
+        this.started = true;
     }
 	  public void UpdateAll(){
 	        super.UpdateAll();

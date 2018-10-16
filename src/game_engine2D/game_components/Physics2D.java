@@ -20,13 +20,13 @@ public class Physics2D extends GameComponent {
 	private PVector velocity = new PVector(0, 0);
 	public BoxCollider2D boxCollider2D;
 	float gravity = 0.2f;
-	float friction = 0.9f;
+	float friction = 0.5f;
 	float frictionOveride = 1.0f;
 	float frictionNormal = 0.9f;
-	boolean isGrounded = true;
+	boolean isGrounded = false;
 	public float speed = 3f;
 	public float maxSpeed = 5f;
-	public int collisionCount = 0;
+	public int collisionCount = 0; // number of objects to check in current spatial bin
 
 	/**
 	 * @param g
@@ -44,18 +44,10 @@ public class Physics2D extends GameComponent {
 	@Override
 	public void update() {
 
-		
-
-		
-		if (GameManager.frameCount % frameDelay == 0) {
-		
-		
-		}
-		
 		this.transform.prev_position.x = this.transform.position.x;
 		this.transform.prev_position.y = this.transform.position.y;
 		gravityEffect();
-		if (isGrounded ) {
+		if (this.isGrounded ) {
 			this.velocity.x *= friction;
 		}
 		if (PApplet.abs(velocity.x) >= maxSpeed) {
@@ -64,7 +56,7 @@ public class Physics2D extends GameComponent {
 			else
 				velocity.x = -maxSpeed;
 		}
-		if (isGrounded && PApplet.abs(velocity.x) <= 0.1f) {
+		if (this.isGrounded && PApplet.abs(velocity.x) <= 0.1f) {
 			//velocity.x = 0f;
 		}
 		this.transform.position.add(velocity);
@@ -89,33 +81,35 @@ public class Physics2D extends GameComponent {
 			if (hitInfo.didHit) {
 				// this.velocity = hitInfo.velocity;
 				switch (hitInfo.hitSide) {
+				
+				case LEFT:
+					this.velocity.x *= -1f;
+					this.transform.position.x = hitInfo.boundingBox.left + this.transform.localBoundingBox.left - 2;
+					this.isGrounded = false;
+					break;
+				case RIGHT:
+					this.velocity.x *= -1f;
+					this.transform.position.x = hitInfo.boundingBox.right + this.transform.localBoundingBox.right + 2;
+					this.isGrounded = false;
+					break;
 				case TOP:
 					this.velocity.y = 0f;
 					this.transform.position.y = hitInfo.boundingBox.bottom + this.transform.localBoundingBox.bottom;
 
 					break;
+			
 				case BOTTOM:
 					this.velocity.y = 0f;
 					this.transform.position.y = hitInfo.boundingBox.top + this.transform.localBoundingBox.top;
-					if(!isGrounded) {
-						isGrounded = true;
+					if(!this.isGrounded) {
+						this.isGrounded = true;
 						velocity.x *= 0.5f;
 						
 					}
 					
 					break;
-				case LEFT:
-					this.velocity.x *= -1f;
-					this.transform.position.x = hitInfo.boundingBox.left + this.transform.localBoundingBox.left;
-
-					break;
-				case RIGHT:
-					this.velocity.x *= -1f;
-					this.transform.position.x = hitInfo.boundingBox.right + this.transform.localBoundingBox.right;
-
-					break;
 				case NONE:
-					isGrounded = false;
+					this.isGrounded = false;
 					break;
 				}
 			}
@@ -129,7 +123,7 @@ public class Physics2D extends GameComponent {
 	}
 
 	public void jump(float force) {
-		if (isGrounded) {
+		if (this.isGrounded) {
 			// impulse force UP
 			velocity.y = -force;
 			isGrounded = false;
@@ -150,7 +144,7 @@ public class Physics2D extends GameComponent {
 		this.gravity = g;
 	}
 	public void move(float force) {
-		if (isGrounded) {
+		if (this.isGrounded) {
 			this.friction = this.frictionOveride;
 			velocity.x += force;
 		}
@@ -158,7 +152,7 @@ public class Physics2D extends GameComponent {
 	}
 
 	public void keyUp() {
-		if (isGrounded) {
+		if (this.isGrounded) {
 			this.friction = this.frictionNormal;
 			
 		}

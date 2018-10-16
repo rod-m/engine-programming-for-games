@@ -9,10 +9,12 @@ public class Main extends PApplet {
 	public void setup() {
 		background(0);
 		launcher = new Launcher(this);
-		launcher.StartGame();
+		
 	}
 	public void draw() {
-		launcher.UpdateAll();
+		launcher.StartGame();
+		if(launcher.started)
+			launcher.UpdateAll();
 	}
 	public void settings() {
 		size(640,480);

@@ -17,7 +17,7 @@ public class Main extends PApplet {
 			launcher.UpdateAll();
 	}
 	public void settings() {
-		size(640,480);
+		size(1200,720);
 	}
 	// event handling
 	public void keyPressed()    { 

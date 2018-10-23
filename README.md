@@ -40,3 +40,6 @@ Added offset grid with a Camera2D
 
 # Sprint 6
 Spatial Grid collision system. Player has text displaying number of tiles tested.
+
+# Sprint 7
+Screen layer for swapping out start screen, editors and game levels. Level save data. Beginning of a level editor.

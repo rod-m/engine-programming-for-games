@@ -10,7 +10,7 @@ public abstract class GameObject extends ProcessingEntity {
 		this.components = new ArrayList<GameComponent>();
 	}
 
-	public String name;
+
 	public String tag;
 	
 	public ArrayList<GameComponent> components;
@@ -18,10 +18,11 @@ public abstract class GameObject extends ProcessingEntity {
 	public abstract void start();
 	public abstract void update();
 	public abstract void render();
-	//public void checkCollisions( BoundingBox bb) {}
 	public void keyPressed(char key, int keyCode) {}
 	public void keyReleased(char key, int keyCode) {}
-	
+	public void mousePressed() {}
+	public void mouseClicked() {}
+
 	public String ToString() {
 		return this.name;
 	}

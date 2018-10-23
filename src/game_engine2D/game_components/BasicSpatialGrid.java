@@ -108,6 +108,13 @@ public class BasicSpatialGrid {
 	public ArrayList<BoundingBox> queryGrid(BoundingBox _bb) {
 		Coord pos = gridCoordinates(_bb.right, _bb.bottom);
 		int index = pos.x * gridLengthX + pos.y;
+		if (spatialGridCells.size() < index) {
+			PApplet.println("Player out of bounds!");
+			index = 0;
+		}
+		
 		return spatialGridCells.get(index).subBoundingBoxes;
+		
+		
 	}
 }

@@ -12,9 +12,7 @@ public class Main extends PApplet {
 		
 	}
 	public void draw() {
-		launcher.StartGame();
-		if(launcher.started)
-			launcher.UpdateAll();
+		launcher.UpdateAll();
 	}
 	public void settings() {
 		size(640,480);
@@ -25,6 +23,9 @@ public class Main extends PApplet {
 		}
 	public void keyReleased()   { 
 		launcher.keyReleased(key, keyCode); 
+		}
+	public void mousePressed()   { 
+		launcher.mousePressed(); 
 		}
 //	void mouseMoved()    { launcher.mouseMoved(mouseX, mouseY); }
 //	void mousePressed()  { SoundManager.clicked(mouseX,mouseY); activeScreen.mousePressed(mouseX, mouseY, mouseButton); }

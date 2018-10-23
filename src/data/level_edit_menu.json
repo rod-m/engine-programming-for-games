@@ -1,0 +1,6 @@
+{
+id:1,
+name: "Level Editor saved data",
+
+menuItems:[{id: 0, name:"New Level"}]
+}

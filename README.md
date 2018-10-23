@@ -43,3 +43,6 @@ Spatial Grid collision system. Player has text displaying number of tiles tested
 Fixed sticking to walls - checked left/right bounding box before top/bottom. Added a 2 pixel bounce off sides.
 Placed platforms on grid. Added reload option for test.
 
+# Sprint 7
+Screen layer for swapping out start screen, editors and game levels.
+Level save data. Beginning of a level editor.

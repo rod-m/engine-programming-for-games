@@ -1,3 +1,6 @@
 {
-tiles:[{}]
+id:1,
+name: "Avenger",
+player:{posX:400, posY: 300, score: 0, lives: 3},
+tiles:[{x:100, y:100, w:50, h:20}]
 }

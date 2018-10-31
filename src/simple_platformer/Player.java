@@ -19,6 +19,9 @@ public class Player extends Sprite {
 	private Physics2D physics;
 	public int stroke = parent.color(120, 120, 255);
 	public int fill = parent.color(255);
+	private char keyDownLeft = '-';
+	private char keyDownRight = '-';
+	private char keyDownUp = '-';
 
 	/**
 	 * @param p
@@ -40,6 +43,7 @@ public class Player extends Sprite {
 		this.physics = new Physics2D(this);
 		this.physics.start();
 		this.physics.speed = speedForce;
+	
 	}
 
 //	public void checkCollisions(BoundingBox bb) {
@@ -58,26 +62,42 @@ public class Player extends Sprite {
 		parent.stroke(this.stroke);
 		parent.rect(this.transform.position.x, this.transform.position.y, this.size.x, this.size.y);
 		parent.textSize(12);
-		parent.text("#"+this.physics.collisionCount, this.transform.position.x-4, this.transform.position.y-15); 
-	
+		parent.text("#" + this.physics.collisionCount, this.transform.position.x - 4, this.transform.position.y - 15);
+
 	}
 
 	public void keyPressed(char key, int keyCode) {
 		super.keyPressed(key, keyCode);
 		// mapped key pressed
-		   if (keyCode == PApplet.UP) {
+		if (keyDownLeft == '+' && keyCode == PApplet.UP) {
 			this.physics.jump(jumpForce);
-		}
-		   if (keyCode == PApplet.LEFT) {
 			this.physics.move(-speedForce);
-		}
-		   if (keyCode == PApplet.RIGHT) {
+		} else if (keyDownRight == '+' && keyCode == PApplet.UP) {
+			this.physics.jump(jumpForce);
+			this.physics.move(speedForce);
+		} else if (keyCode == PApplet.UP) {
+			keyDownUp = '+';
+			this.physics.jump(jumpForce);
+		} else if (keyCode == PApplet.LEFT) {
+			keyDownLeft = '+';
+			this.physics.move(-speedForce);
+		} else if (keyCode == PApplet.RIGHT) {
+			keyDownRight = '+';
 			this.physics.move(speedForce);
 		}
+		
 	}
 
 	public void keyReleased(char key, int keyCode) {
 		super.keyReleased(key, keyCode);
+		
+		if(keyCode == PApplet.UP) {
+			keyDownUp = '-';
+		}else if(keyCode == PApplet.LEFT) {
+			keyDownLeft = '-';
+		}else if(keyCode == PApplet.RIGHT) {
+			keyDownRight = '-';
+		}
 		this.physics.keyUp();
 	}
 

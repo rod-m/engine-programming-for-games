@@ -40,15 +40,13 @@ Added offset grid with a Camera2D
 
 # Sprint 6
 Spatial Grid collision system. Player has text displaying number of tiles tested.
-<<<<<<< HEAD
 Fixed sticking to walls - checked left/right bounding box before top/bottom. Added a 2 pixel bounce off sides.
 Placed platforms on grid. Added reload option for test.
 
 # Sprint 7
 Screen layer for swapping out start screen, editors and game levels.
 Level save data. Beginning of a level editor.
-=======
 
-# Sprint 7
-Screen layer for swapping out start screen, editors and game levels. Level save data. Beginning of a level editor.
->>>>>>> branch 'master' of https://github.com/rod-m/engine-programming-for-games.git
+# Sprint 8
+Level Editor
+Added screen for Level Editor which can swap back to main screen

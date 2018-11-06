@@ -36,12 +36,12 @@ public class StartScreen extends GameScreen {
 		}
 		// add any new key presses to load extra screens here
 		// we will add a level editor next!
-		/*
+		
 		if(key == '2') {
 			// level editor coming next...
 			this.swapTo(1);
 		}
-		*/
+		
 
 	}
 

@@ -11,11 +11,11 @@ public class MenuMaker extends GameObject {
 	 * */
 	private ArrayList<String> menu_options = new ArrayList<String>();
 	// private int selected = 0;
-	private int w = 160,h = 30;
+	private int w = 160,h = 30, padding = 15;
 	public MenuMaker(PApplet p) {
 		super(p);
-		this.menu_options.add("Start");
-		this.menu_options.add("Level Edit");
+		//this.menu_options.add("Start");
+		//this.menu_options.add("Level Edit");
 	}
 
 	
@@ -28,8 +28,8 @@ public class MenuMaker extends GameObject {
 	}
 	@Override
 	public void start() {
-		this.transform.position.x = parent.width /2;
-		this.transform.position.y = parent.height /2;
+		this.transform.position.x = parent.width /2 - w/2;
+		this.transform.position.y = parent.height /2 - h * this.menu_options.size();
 
 	}
 
@@ -47,7 +47,7 @@ public class MenuMaker extends GameObject {
 			//parent.rectMode(PApplet.CENTER);
 			parent.fill(0);
 			parent.stroke(255);
-			parent.rect(-15, i * h, w, h);
+			parent.rect(-this.padding, i * h, w, h);
 			parent.fill(255);
 			parent.noStroke();
 			parent.text((i+1) + ": "+this.menu_options.get(i), 0,h/2 + 5+ i * h);

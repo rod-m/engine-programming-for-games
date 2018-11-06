@@ -46,7 +46,7 @@ public class Launcher extends BaseLauncher {
 		startScreen.exitScreensAdd(gameLevel);
 		LevelEditor levelEditor = new LevelEditor(parent, this.gameManager);
 		startScreen.exitScreensAdd(levelEditor);
-
+		levelEditor.exitScreensAdd(startScreen);
 		this.gameManager.StartAll();
 	
 	}

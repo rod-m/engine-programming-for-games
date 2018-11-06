@@ -1,19 +1,33 @@
 package simple_platformer;
 
+import game_engine2D.Camera2D;
 import game_engine2D.GameManager;
 import game_engine2D.GameScreen;
+import game_engine2D.GUI.MenuMaker;
 import processing.core.PApplet;
 
 public class LevelEditor extends GameScreen {
-
+	MenuMaker menuMaker;
 	public LevelEditor(PApplet p, GameManager _gameManager) {
 		super(p, _gameManager);
-		// TODO Auto-generated constructor stub
+		this.name = "Level Editor";
 	}
-
+	@Override
+	public void start() {
+		super.start();		
+		menuMaker = new MenuMaker(parent, this.exitScreens);
+		menuMaker.start();
+		this.gameObjects.add(menuMaker);
+		this.ready = true;
+		this.activate();
+		
+	}
 	@Override
 	public void keyPressed(char key, int keyCode) {
-		// TODO Auto-generated method stub
+		if(key == '1') {
+			//load start screen
+			this.swapTo(0);
+		}
 		
 	}
 

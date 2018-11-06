@@ -49,18 +49,19 @@ public abstract class GameScreen extends ProcessingEntity {
 		this.exitScreens.add(_screen);
 	}
 	public void swapTo(int i) {
-		if(this.exitScreen != i && this.exitScreen < this.exitScreens.size()) {
+		parent.println("From " + this.name + " swapTo " + i + " => ");
+		if(this.exitScreen < this.exitScreens.size()) {
 			this.exitScreen = i;
 			this.swap_screen = this.exitScreens.get(this.exitScreen);
-			parent.println("swapTo " + i + " => " + this.name);
-			
+
+		}else {
+			parent.println("Error: exitScreen out of range");
+
 		}
-		
-		
 	}
+	
 	public void activate() {
 		// copy local gameobjects to gamemanager
-	
 		this.gameManager.replaceObjects(this.gameObjects);
 		this.gameManager.replacePlayerObjects(this.playerGameObjects);
 		this.gameManager.replaceBoundingBoxes(this.gameBoundingBoxes);

@@ -11,7 +11,7 @@ public class Launcher extends BaseLauncher {
 	int waiting = 0;
 	DataManager dataManager;
 	GameScreen activeScreen;
-	ArrayList<GameScreen> screens = new ArrayList<GameScreen>();
+	//ArrayList<GameScreen> screens = new ArrayList<GameScreen>();
 	public Launcher(PApplet p) {
 		super(p);
 		StartGame();
@@ -33,14 +33,18 @@ public class Launcher extends BaseLauncher {
 
 	public void StartGame() {
 		StartScreen startScreen = new StartScreen(parent, this.gameManager);
-		screens.add(startScreen);
+		//screens.add(startScreen);
 		
 		GameLevel gameLevel = new GameLevel(parent, this.gameManager);
 		//gameLevel.start();
-		screens.add(gameLevel);
+		//screens.add(gameLevel);
 		activeScreen = startScreen;
 		started = true;
+		
 		startScreen.exitScreensAdd(gameLevel);
+		LevelEditor levelEditor = new LevelEditor(parent, this.gameManager);
+		startScreen.exitScreensAdd(levelEditor);
+		//screens.add(levelEditor);
 		this.gameManager.StartAll();
 	
 	}

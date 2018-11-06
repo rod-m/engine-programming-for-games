@@ -6,7 +6,9 @@ import game_engine2D.game_components.BoundingBox;
 import processing.core.PApplet;
 
 /*
- * 
+ * Use this class for new game scenes
+ * Link exit screen to exitScreens
+ * use swapTo to load next screen
  * */
 public abstract class GameScreen extends ProcessingEntity {
 	protected int exitScreen = -1;
@@ -36,9 +38,7 @@ public abstract class GameScreen extends ProcessingEntity {
 		if(this.ready) {
 			this.activate();
 			return;
-		}
-		//this.swap_screen = null;
-		
+		}		
 	}
 	public abstract void keyPressed(char key, int keyCode);
 	public abstract void keyReleased(char key, int keyCode);
@@ -52,7 +52,6 @@ public abstract class GameScreen extends ProcessingEntity {
 		if(this.exitScreen != i && this.exitScreen < this.exitScreens.size()) {
 			this.exitScreen = i;
 			this.swap_screen = this.exitScreens.get(this.exitScreen);
-			//this.swap_screen.activate();
 			parent.println("swapTo " + i + " => " + this.name);
 			
 		}

@@ -1,13 +1,8 @@
 package simple_platformer;
 
-
-import java.util.ArrayList;
-
 import game_engine2D.Camera2D;
 import game_engine2D.GameManager;
-import game_engine2D.GameObject;
 import game_engine2D.GameScreen;
-import game_engine2D.game_components.*;
 import game_engine2D.Tile;
 import game_engine2D.data_management.DataManager;
 import processing.core.PApplet;
@@ -20,15 +15,12 @@ public class GameLevel extends GameScreen {
 		this.name = "Game Level 1";
 	}
 
-	private DataManager dataManager; //ref
+	private DataManager dataManager; // todo - load external level data
 	
 
 	@Override
 	public void start() {
-		super.start();
-		
-		
-		
+		super.start();		
 		Player player = new Player(parent, parent.width / 2, parent.height / 2, 60, 60);
 		player.start();
 		this.playerGameObjects.add(player);

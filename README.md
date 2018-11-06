@@ -46,3 +46,6 @@ Placed platforms on grid. Added reload option for test.
 # Sprint 7
 Screen layer for swapping out start screen, editors and game levels.
 Level save data. Beginning of a level editor.
+
+# Sprint 8
+Level Editor

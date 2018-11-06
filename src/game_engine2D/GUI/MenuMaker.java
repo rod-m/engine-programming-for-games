@@ -7,8 +7,10 @@ import game_engine2D.GameScreen;
 import processing.core.PApplet;
 
 public class MenuMaker extends GameObject {
+	/* Display a list of menu options
+	 * */
 	private ArrayList<String> menu_options = new ArrayList<String>();
-	private int selected = 0;
+	// private int selected = 0;
 	private int w = 160,h = 30;
 	public MenuMaker(PApplet p) {
 		super(p);

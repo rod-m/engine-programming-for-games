@@ -51,15 +51,15 @@ public class Physics2D extends GameComponent {
 			this.velocity.x *= friction;
 		}
 		if (PApplet.abs(velocity.x) >= maxSpeed) {
-			if(velocity.x > 0)
-				velocity.x = maxSpeed;
+			if(this.velocity.x > 0)
+				this.velocity.x = maxSpeed;
 			else
-				velocity.x = -maxSpeed;
+				this.velocity.x = -maxSpeed;
 		}
-		if (this.isGrounded && PApplet.abs(velocity.x) <= 0.1f) {
+		if (this.isGrounded && PApplet.abs(this.velocity.x) <= 0.1f) {
 			//velocity.x = 0f;
 		}
-		this.transform.position.add(velocity);
+		this.transform.position.add(this.velocity);
 		checkCollisions();
 	}
 
@@ -72,6 +72,14 @@ public class Physics2D extends GameComponent {
 		BoundingBox new_bb;
 		new_bb = this.transform.NewWorldBoundingBox();
 		ArrayList<BoundingBox> mySpatialLoc = GameManager.basicSpatialGrid.queryGrid(new_bb);
+		if(mySpatialLoc == null) {
+			// very basic re-spawn to hard coded point if out of bounds
+			this.transform.position.x = parent.width / 2;
+			this.transform.position.y = 0;
+			this.velocity.x = 0f;
+			this.velocity.y = 0.0f;
+			return;
+		}
 		collisionCount = mySpatialLoc.size();
 		for (int i = 0; i < collisionCount; i++) {
 

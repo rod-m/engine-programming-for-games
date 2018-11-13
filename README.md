@@ -55,3 +55,8 @@ Added screen for Level Editor which can swap back to main screen
 Level editor save level to json file. This level will replace old random tile generator.
 Added save_tiles_json to DataManager
 Added an instance of DataManager to GameManager
+
+# Sprint 10
+Placed new tiles on a grid.
+Fixed issue with player loading multiple times after edit level
+

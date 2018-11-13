@@ -15,6 +15,7 @@ public class GameManager extends ProcessingEntity {
 	public int background = 0;
 	private ArrayList<GameObject> gameObjects; // scene static elements like platforms
 	private ArrayList<GameObject> playerGameObjects; // player list for attaching interactions like key press
+	private ArrayList<GameObject> GUIGameObjects;
 	public static ArrayList<BoundingBox> gameBoundingBoxes;
 	public static int frameCount = 0;
 	public static PVector offset = new PVector(0, 0);
@@ -36,6 +37,7 @@ public class GameManager extends ProcessingEntity {
 		dataManager = new DataManager(parent);
 		gameObjects = new ArrayList<GameObject>();
 		playerGameObjects = new ArrayList<GameObject>();
+		GUIGameObjects = new ArrayList<GameObject>();
 		gameBoundingBoxes = new ArrayList<BoundingBox>();
 	}
 
@@ -58,6 +60,9 @@ public class GameManager extends ProcessingEntity {
 	public void replaceObjects(ArrayList<GameObject> _gameObjects) {
 		gameObjects = _gameObjects;
 	}
+	public void replaceGUIObjects(ArrayList<GameObject> _gameObjects) {
+		GUIGameObjects = _gameObjects;
+	}
 
 	public void replacePlayerObjects(ArrayList<GameObject> _gameObjects) {
 		playerGameObjects = _gameObjects;
@@ -65,7 +70,7 @@ public class GameManager extends ProcessingEntity {
 	public void replaceBoundingBoxes(ArrayList<BoundingBox> _boundingBoxes) {
 		gameBoundingBoxes = _boundingBoxes;
 	}
-
+	
 	public void StartAll() {
 
 		for (int i = 0; i < gameObjects.size(); i++) {
@@ -89,7 +94,13 @@ public class GameManager extends ProcessingEntity {
 		// checkCollisions();
 		frameCount++; // completed all frame update and renderings
 		parent.popMatrix();
-
+		//non transformed objects like menu
+		for (int i = 0; i < GUIGameObjects.size(); i++) {
+			GameObject g = GUIGameObjects.get(i);
+			g.update();
+			g.render();
+		}
+		
 	}
 
 	public void keyPressed(char key, int keyCode) {

@@ -4,12 +4,14 @@ import game_engine2D.Camera2D;
 import game_engine2D.GameManager;
 import game_engine2D.GameScreen;
 import game_engine2D.Tile;
+import game_engine2D.GUI.MenuMaker;
 import game_engine2D.data_management.DataManager;
 import processing.core.PApplet;
 import processing.data.JSONArray;
 import processing.data.JSONObject;
 
 public class GameLevel extends GameScreen {
+	MenuMaker menuMaker;
 	public GameLevel(PApplet p, GameManager _gameManager) {
 		super(p, _gameManager);
 		this.name = "Game Level 1";
@@ -19,58 +21,39 @@ public class GameLevel extends GameScreen {
 
 	@Override
 	public void start() {
-		super.start();
-		Player player = new Player(parent, parent.width / 2, parent.height / 2, 60, 60);
-		player.start();
-		this.playerGameObjects.add(player);
-		this.gameObjects.add(player);
-		Camera2D camera = new Camera2D(parent, player, 99);
-		camera.cameraOffset.y = 90;
-		this.gameObjects.add(camera);
-		load_tile_json();
-		// random_tiles();
-		this.ready = true;
+		if(!this.ready) {
+			super.start();
+			menuMaker = new MenuMaker(parent, this.exitScreens);
+		
+			menuMaker.start();
+			this.menuGameObjects.add(menuMaker);
+			
+			Player player = new Player(parent, parent.width / 2, parent.height / 2, 60, 60);
+			player.start();
+			this.playerGameObjects.add(player);
+			this.gameObjects.add(player);
+			Camera2D camera = new Camera2D(parent, player, 99);
+			camera.cameraOffset.y = 90;
+			this.gameObjects.add(camera);
+			if(!this.load_tile_json()) {
+				// if no level data exists then load random tiles
+				random_tiles();
+			}
+			
+			this.ready = true;
+		}
+		
 		this.activate();
 
 	}
 
-	private void load_tile_json() {
-		dataManager = new DataManager(parent);
-		dataManager.load_data();
-		JSONArray tiles;
-		try {
-			// simply load a list called "level1"
-			// todo - make a list of levels and provide a menu to select
-			tiles = dataManager.game_data.getJSONArray("level1");
-		} catch (Exception E) {
-			// Oh, it doesn't exist, in this case revert to test level data
-			random_tiles();
-			return;
-		}
-
-		for (int i = 0; i < tiles.size(); i++) {
-			JSONObject tile;
-			try {
-				//get data - skip if null
-				// the null one is probably the player sprite which will be handled separately
-				tile = tiles.getJSONObject(i);
-			} catch (Exception E) {
-				continue;
-			}
-			int x = tile.getInt("x");
-			int y = tile.getInt("y");
-			int tw = tile.getInt("w");
-			int th = tile.getInt("h");
-			Tile platform = new Tile(parent, x, y, tw, th);
-			platform.start();
-			this.gameObjects.add(platform);
-			this.gameBoundingBoxes.add(platform.transform.NewWorldBoundingBox());
-		}
-	}
-
+	
 	@Override
 	public void keyPressed(char key, int keyCode) {
-		// TODO Auto-generated method stub
+		if(key == '1') {
+			//load start screen
+			this.swapTo(0);
+		}
 
 	}
 

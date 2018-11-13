@@ -57,7 +57,7 @@ public class Player extends Sprite {
 
 	@Override
 	public void render() {
-
+		parent.rectMode(PApplet.CENTER);
 		parent.fill(this.fill);
 		parent.stroke(this.stroke);
 		parent.rect(this.transform.position.x, this.transform.position.y, this.size.x, this.size.y);

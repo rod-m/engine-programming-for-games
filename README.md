@@ -50,3 +50,8 @@ Level save data. Beginning of a level editor.
 # Sprint 8
 Level Editor
 Added screen for Level Editor which can swap back to main screen
+
+# Sprint 9
+Level editor save level to json file. This level will replace old random tile generator.
+Added save_tiles_json to DataManager
+Added an instance of DataManager to GameManager

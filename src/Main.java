@@ -27,10 +27,13 @@ public class Main extends PApplet {
 	public void mousePressed()   { 
 		launcher.mousePressed(); 
 		}
+	
+	
+	//parent.println("level edit click");
 //	void mouseMoved()    { launcher.mouseMoved(mouseX, mouseY); }
 //	void mousePressed()  { SoundManager.clicked(mouseX,mouseY); activeScreen.mousePressed(mouseX, mouseY, mouseButton); }
 //	void mouseDragged()  { launcher.mouseDragged(mouseX, mouseY, mouseButton); }
 //	void mouseReleased() { launcher.mouseReleased(mouseX, mouseY, mouseButton); }
-//	void mouseClicked()  { launcher.mouseClicked(mouseX, mouseY, mouseButton); }
+	public void mouseClicked()  { launcher.mouseClicked(mouseX, mouseY, mouseButton); }
 
 }

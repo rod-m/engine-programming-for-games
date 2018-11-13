@@ -5,6 +5,7 @@ import processing.core.PVector;
 
 import java.util.ArrayList;
 
+import game_engine2D.data_management.DataManager;
 import game_engine2D.game_components.BasicSpatialGrid;
 import game_engine2D.game_components.BoundingBox;
 
@@ -19,6 +20,7 @@ public class GameManager extends ProcessingEntity {
 	public static PVector offset = new PVector(0, 0);
 	public static PVector screenOffset = new PVector(0, 0);
 	public static BasicSpatialGrid basicSpatialGrid;
+	public DataManager dataManager;
 
 	public GameManager(PApplet p) {
 		super(p);
@@ -26,10 +28,12 @@ public class GameManager extends ProcessingEntity {
 
 		screenOffset.x = parent.width / 2;
 		screenOffset.y = parent.height / 2;
+		
 		this.Init();
 	}
 
 	public void Init() {
+		dataManager = new DataManager(parent);
 		gameObjects = new ArrayList<GameObject>();
 		playerGameObjects = new ArrayList<GameObject>();
 		gameBoundingBoxes = new ArrayList<BoundingBox>();
@@ -115,11 +119,11 @@ public class GameManager extends ProcessingEntity {
 		}
 	}
 
-	public void mouseClicked() {
+	public void mouseClicked(int mouseX, int mouseY, int mouseButton) {
 		for (int i = 0; i < playerGameObjects.size(); i++) {
 			// send key press to player
 			GameObject g = playerGameObjects.get(i);
-			g.mouseClicked();
+			g.mouseClicked(mouseX,mouseY,mouseButton);
 		}
 	}
 

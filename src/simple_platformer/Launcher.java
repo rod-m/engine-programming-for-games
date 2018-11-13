@@ -34,25 +34,22 @@ public class Launcher extends BaseLauncher {
 		activeScreen.keyReleased(key, keyCode);
 
 	}
+	public void mouseClicked(int mouseX, int mouseY, int mouseButton) {
+		super.mouseClicked(mouseX,mouseY,mouseButton);
+		activeScreen.mouseClicked(mouseX,mouseY,mouseButton);
+    }
 
 	public void StartGame() {
 		StartScreen startScreen = new StartScreen(parent, this.gameManager);
-		
 		GameLevel gameLevel = new GameLevel(parent, this.gameManager);
-
 		activeScreen = startScreen;
-		started = true;
-		
+		started = true;	
 		startScreen.exitScreensAdd(gameLevel);
 		LevelEditor levelEditor = new LevelEditor(parent, this.gameManager);
 		startScreen.exitScreensAdd(levelEditor);
 		levelEditor.exitScreensAdd(startScreen);
-		this.gameManager.StartAll();
-	
+		this.gameManager.StartAll();	
 	}
-
-
-
 	
 	public void UpdateAll() {
 		super.UpdateAll();

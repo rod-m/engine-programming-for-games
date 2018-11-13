@@ -43,7 +43,7 @@ public abstract class GameScreen extends ProcessingEntity {
 	public abstract void keyPressed(char key, int keyCode);
 	public abstract void keyReleased(char key, int keyCode);
 	public abstract void mousePressed();
-	public abstract void mouseClicked();
+	public abstract void mouseClicked(int mouseX, int mouseY, int mouseButton);
 
 	public void exitScreensAdd(GameScreen _screen) {
 		this.exitScreens.add(_screen);

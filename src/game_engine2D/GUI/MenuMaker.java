@@ -31,7 +31,9 @@ public class MenuMaker extends GameObject {
 		}
 		
 	}
-	
+	public void add_menu_item(String label) {
+		this.menu_options.add(label);
+	}
 	@Override
 	public void start() {
 		if(this.alignment == ALIGNMENT.CENTRED) {
@@ -50,7 +52,7 @@ public class MenuMaker extends GameObject {
 		parent.pushMatrix();
 		parent.translate(this.transform.position.x, this.transform.position.y);
 		for(int i=0; i < this.menu_options.size(); i++) {
-			//parent.rectMode(PApplet.CENTER);
+			parent.rectMode(PApplet.CORNER);
 			parent.fill(0);
 			parent.stroke(255);
 			if(this.direction == DIRECTION.VERTICAL) {
@@ -67,7 +69,7 @@ public class MenuMaker extends GameObject {
 			}else {
 				textPos = new PVector(i * w +this.padding,h*0.7f);
 			}
-			parent.text((i+1) + ": "+this.menu_options.get(i), textPos.x,textPos.y);
+			parent.text(this.menu_options.get(i), textPos.x,textPos.y);
 
 		}
 		parent.popMatrix();

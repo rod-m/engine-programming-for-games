@@ -16,11 +16,10 @@ public class GameLevel extends GameScreen {
 	}
 
 	private DataManager dataManager; // todo - load external level data
-	
 
 	@Override
 	public void start() {
-		super.start();		
+		super.start();
 		Player player = new Player(parent, parent.width / 2, parent.height / 2, 60, 60);
 		player.start();
 		this.playerGameObjects.add(player);
@@ -28,19 +27,36 @@ public class GameLevel extends GameScreen {
 		Camera2D camera = new Camera2D(parent, player, 99);
 		camera.cameraOffset.y = 90;
 		this.gameObjects.add(camera);
-		//tile_json();
-		random_tiles();
+		load_tile_json();
+		// random_tiles();
 		this.ready = true;
 		this.activate();
-		
+
 	}
-	
-	private void tile_json() {
+
+	private void load_tile_json() {
 		dataManager = new DataManager(parent);
 		dataManager.load_data();
-		JSONArray tiles = dataManager.game_data.getJSONArray("tiles");
+		JSONArray tiles;
+		try {
+			// simply load a list called "level1"
+			// todo - make a list of levels and provide a menu to select
+			tiles = dataManager.game_data.getJSONArray("level1");
+		} catch (Exception E) {
+			// Oh, it doesn't exist, in this case revert to test level data
+			random_tiles();
+			return;
+		}
+
 		for (int i = 0; i < tiles.size(); i++) {
-			JSONObject tile = tiles.getJSONObject(i);
+			JSONObject tile;
+			try {
+				//get data - skip if null
+				// the null one is probably the player sprite which will be handled separately
+				tile = tiles.getJSONObject(i);
+			} catch (Exception E) {
+				continue;
+			}
 			int x = tile.getInt("x");
 			int y = tile.getInt("y");
 			int tw = tile.getInt("w");
@@ -51,7 +67,7 @@ public class GameLevel extends GameScreen {
 			this.gameBoundingBoxes.add(platform.transform.NewWorldBoundingBox());
 		}
 	}
-	
+
 	@Override
 	public void keyPressed(char key, int keyCode) {
 		// TODO Auto-generated method stub
@@ -71,7 +87,7 @@ public class GameLevel extends GameScreen {
 	}
 
 	@Override
-	public void mouseClicked() {
+	public void mouseClicked(int mouseX, int mouseY, int mouseButton) {
 		// TODO Auto-generated method stub
 
 	}
@@ -101,7 +117,7 @@ public class GameLevel extends GameScreen {
 			platform.fillColour = parent.color(0, 200, 200);
 			this.gameObjects.add(platform);
 			this.gameBoundingBoxes.add(platform.transform.NewWorldBoundingBox());
-		
+
 		}
 
 		// left
@@ -112,7 +128,7 @@ public class GameLevel extends GameScreen {
 			platform.fillColour = parent.color(0, 200, 200);
 			this.gameObjects.add(platform);
 			this.gameBoundingBoxes.add(platform.transform.NewWorldBoundingBox());
-		
+
 		}
 		// right
 		for (int i = 0; i < 200; i++) {
@@ -122,11 +138,9 @@ public class GameLevel extends GameScreen {
 			platform.fillColour = parent.color(0, 200, 200);
 			this.gameObjects.add(platform);
 			this.gameBoundingBoxes.add(platform.transform.NewWorldBoundingBox());
-		
+
 		}
 
-
-	
 	}
 
 }

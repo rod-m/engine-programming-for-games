@@ -58,7 +58,7 @@ public class StartScreen extends GameScreen {
 	}
 
 	@Override
-	public void mouseClicked() {
+	public void mouseClicked(int mouseX, int mouseY, int mouseButton) {
 		// TODO Auto-generated method stub
 
 	}

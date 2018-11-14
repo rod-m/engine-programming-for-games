@@ -48,11 +48,7 @@ public class Launcher extends BaseLauncher {
 		startScreen.exitScreensAdd(levelEditor);
 		levelEditor.exitScreensAdd(startScreen);
 		this.gameManager.StartAll();
-	
 	}
-
-
-
 	
 	public void UpdateAll() {
 		super.UpdateAll();

@@ -54,8 +54,8 @@ public class BasicSpatialGrid {
 	}
 	private void makeSpatialGrid() {
 		gridSize = height / gridRes;
-		gridLengthX = PApplet.floor( globalMax.x / gridSize );
-		gridLengthY = PApplet.floor( globalMax.y / gridSize );
+		gridLengthX = PApplet.floor( globalMax.x / gridSize ) + 100;
+		gridLengthY = PApplet.floor( globalMax.y / gridSize ) + 100;
 		spatialGridCells = new ArrayList<SpatialGridCell>();
 		for(int x=0; x<=gridLengthX;x++) {
 			for(int y=0; y<=gridLengthY; y++) {
@@ -98,6 +98,7 @@ public class BasicSpatialGrid {
 			 if(!retval) b.subBoundingBoxes.add(_bb);
 		}else {
 			outOfBounds ++;
+			PApplet.println("outOfBounds " + index + "/" + spatialGridCells.size());
 		}
 	}
 	private Coord gridCoordinates(float x, float y) {
@@ -108,10 +109,9 @@ public class BasicSpatialGrid {
 	public ArrayList<BoundingBox> queryGrid(BoundingBox _bb) {
 		Coord pos = gridCoordinates(_bb.right, _bb.bottom);
 		int index = pos.x * gridLengthX + pos.y;
-		if (spatialGridCells.size() <= index) {
+		if (spatialGridCells.size() < index) {
 			PApplet.println("Player out of bounds!");
 			index = 0;
-			return null;
 		}
 		
 		return spatialGridCells.get(index).subBoundingBoxes;
